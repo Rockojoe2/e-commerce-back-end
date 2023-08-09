@@ -3,10 +3,8 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
+// get method for all products
 router.get('/', async (req, res) => {
-  //Tag does need a through for both get methods
-
   try{
     const productData = await Product.findAll({
       include: [{model: Category}, {model: Tag, through: ProductTag}]
@@ -21,7 +19,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Category and Tag data
 });
 
-// get one product
+// get method for one product by id query
 router.get('/:id', async (req, res) => {
   try{
     const productData = await Product.findByPk(req.params.id,{
@@ -41,7 +39,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Category and Tag data
 });
 
-// create new product
+// create new product to create new product 
 router.post('/', async (req, res) => {
   /* req.body should look like this...
     {
@@ -73,7 +71,7 @@ router.post('/', async (req, res) => {
     });
 });
 
-// update product
+// update product by id query
 router.put('/:id', async (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -118,8 +116,8 @@ router.put('/:id', async (req, res) => {
     });
 });
 
+  // delete one product by its id query
 router.delete('/:id', async (req, res) => {
-  // delete one product by its `id` value
   try{
     const productData = await Product.destroy({
       where: {

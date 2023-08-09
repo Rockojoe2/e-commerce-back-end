@@ -3,6 +3,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
+//Get method for all tags
 router.get('/', async (req, res) => {
   // find all tags
   // be sure to include its associated Product data
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//Get method for one tag by id query
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
@@ -37,6 +39,7 @@ router.get('/:id', async (req, res) => {
       }
 });
 
+//Post method to create a new tag
 router.post('/', async (req, res) => {
   // create a new tag
   try{
@@ -48,8 +51,8 @@ router.post('/', async (req, res) => {
   }
 });
 
+  // update a tag's name by its id query
 router.put('/:id', async (req, res) => {
-  // update a tag's name by its `id` value
   try{
     const tagData = await Tag.update(req.body, {
       where: {
@@ -63,8 +66,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+  // delete on tag by its id query
 router.delete('/:id', async (req, res) => {
-  // delete on tag by its `id` value
   try{
     const tagData = await Tag.destroy({
       where: {

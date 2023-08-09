@@ -7,6 +7,8 @@ const sequelize = require('../config/connection');
 class Product extends Model {}
 
 // set up fields and rules for Product model
+
+//We gave product model, an id, product_name, price, stock, and category_id
 Product.init(
   {
     id: {
@@ -20,6 +22,7 @@ Product.init(
       allowNull: false
     },
     price: {
+      //Used decimal for price because prices are usually in decimal. The 10 means you can have up to 10 numbers on the left, and the 2 means you can have up to 2 numbers on the right
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
@@ -34,6 +37,7 @@ Product.init(
         isNumeric: true
       }
     },
+    //category_id is a foreign key relating to category_model
     category_id: {
       type: DataTypes.INTEGER,
       references:{

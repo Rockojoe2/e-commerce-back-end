@@ -7,6 +7,8 @@ class ProductTag extends Model {}
 ProductTag.init(
   {
     // define columns
+    //id column
+
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -14,6 +16,7 @@ ProductTag.init(
       autoIncrement: true
     },
 
+    //product_id foreign key relating to product model
     product_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -23,6 +26,7 @@ ProductTag.init(
       }
     },
 
+    //tag_id foreign key relating to the tag model
     tag_id:{
       type: DataTypes.INTEGER,
       references: {

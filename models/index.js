@@ -4,7 +4,7 @@ const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
-// Products belongsTo Category
+// Products belongsTo Category. Deletes related data through the onDelete cascade.
 Product.belongsTo(Category, {
   foreignKey: 'category_id',
   onDelete: 'CASCADE',
@@ -16,8 +16,10 @@ Category.hasMany(Product, {
   foreignKey: 'category_id',
 });
 
-// Products belongToMany Tags (through ProductTag)
-//Add foreign key to the belongs to many things
+//Products belongToMany Tags through ProductTag product_id foreign key
+
+
+
 Product.belongsToMany(Tag, {
   through: {
     model: ProductTag,
@@ -27,6 +29,7 @@ Product.belongsToMany(Tag, {
   // as: 'productTag_products'
 });
 
+//Products belongToMany Tags through ProductTag product_id foreign key
 
 // Tags belongToMany Products (through ProductTag)
 
@@ -39,6 +42,7 @@ Tag.belongsToMany(Product, {
   // as: 'productTag_products'
 });
 
+//Exporting Product, Category, Tag, and ProductTag as modules
 module.exports = {
   Product,
   Category,
